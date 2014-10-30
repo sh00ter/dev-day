@@ -1,6 +1,6 @@
 // the magic goes here :)
 function getJsonData(offset) {
-    var api = "http://aznitro-silver-test4.awsdev.telegraph.co.uk/content/sections/portal/subsections?limit=20&offset=" + offset;
+    var api = "http://aznitro-silver-test4.awsdev.telegraph.co.uk/content/sections/portal/subsections?limit=10&offset=" + offset;
     $.ajax({
         url: api,
         beforeSend: setHeader
@@ -8,15 +8,16 @@ function getJsonData(offset) {
         var data = data['@graph'][0];
         var lastOffset = parseInt(data.last['@id'].split('offset=')[1], 10);
         if($('.pagination').is(':empty')){
-            var pages = Math.ceil(lastOffset/20);
+            var pages = Math.ceil(lastOffset/10);
             getPagination(pages,lastOffset);
         }
         $(".js_json_data").empty().attr('start',offset);
         var links = data.contains['@list'];
         $.each(links,function( index, value ){
+            console.log(index, value);
             var url = value.subsections['@id'].toString();
             // console.log(getSubSections(url));
-            $(".js_json_data").append("<li  onclick='getSubSections(\""+url+"\")' class='list-group-item' title='"+index+"'><span class='badge'>"+index+"</span><span>"+value.label+"</span></li>");
+            $(".js_json_data").append("<li  onclick='getSubSections(\""+url+"\")' class='list-group-item' title='"+(offset+index)+"'><span class='badge'>"+(offset+index)+"</span><span>"+value.label+"</span></li>");
            //$(".js_json_data").append("<li title='"+index+"'><span data-url='"+url+"'>"+value.label+"</span></li>");
         });
         $('.js_data_btn').hide();
@@ -26,7 +27,7 @@ function getJsonData(offset) {
 function getPagination(pages,lastOffset) {
     var offset;
     for(i=0;i<pages;i++){
-        offset = 10*(2*i) + 1;
+        offset = 10*i + 1;
         if(offset > lastOffset){
             offset = lastOffset;
         }
