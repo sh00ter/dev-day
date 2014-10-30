@@ -3,13 +3,10 @@
 /* ==========================================================================
    Author's custom styles
    ========================================================================== */
+.list-group-item { cursor: pointer;}
+.list-group-item:hover { background: #ddd; color: #fff;}
 
-
-
-
-.js-json-data { margin: 0 auto;}
-
-
+.sub-section-list {display: none;}
 
 
 
