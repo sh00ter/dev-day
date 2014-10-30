@@ -1,8 +1,11 @@
+html { height: 100%; }
 body {
+  background: #111 url('../img/loader.svg') no-repeat center center;
+  background-size: 50px;
   display: table;
-  height: 100%;
+  min-height: 100%;
+  height: auto;
   width: 100%;
-  background: #111;
 }
 .blog-overview {
   background: #111111;
@@ -29,10 +32,11 @@ body {
               transform: scale(0.5); }
   .blog-overview .post-thumbnail {
     float: left;
+    height: 100%;
     width: 100%; }
     .blog-overview .post-thumbnail img {
       float: left;
-      height: auto;
+      height: 100%;
       max-width: 100%;
       width: 100%;
       -webkit-transition: all, .4s;
