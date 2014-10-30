@@ -1,3 +1,9 @@
+body {
+  display: table;
+  height: 100%;
+  width: 100%;
+  background: #111;
+}
 .blog-overview {
   background: #111111;
   border-right: 4px solid #111111;
